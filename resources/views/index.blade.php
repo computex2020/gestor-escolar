@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Gestor Escolar</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <!-- Fonts -->
@@ -210,7 +210,18 @@
         </style>
     </head>
     <body>
-        @include('partials.nav');
+        @php
+            if(isset($_POST["escola"])) {
+                $escola = $_POST["escola"];
+        @endphp
+                @include('partials.nav');
+        @php
+            } else {
+        @endphp
+                @include('partials.navlogin');
+        @php
+            }
+        @endphp
         <div class="container" style="position: relative;">
             <div class="row">
                 <div class="col-md-8 col-md-offset-2 text-center">
@@ -225,6 +236,7 @@
                 </div>
             </div>
 		</div>
+        @include('partials.login');
         <footer class="my-5 pt-5 text-muted text-center text-small">
             <p class="mb-1">&copy; 2020 Computex</p>
         </footer>
