@@ -7,3 +7,5 @@ Route::get('/', function () {
 });
 
 Route::post('home','LoginController@index')->name('home');
+
+Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');

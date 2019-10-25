@@ -2,6 +2,13 @@
 
 use GuzzleHttp\Client;
 
+$email = "";
+$senha = "";
+if(isset($_POST["email"])) {
+	$email = $_POST["email"];
+	$senha = $_POST["senha"];
+}
+echo $email;
 $client = new Client([
     // Base URI is used with relative requests
     'base_uri' => 'http://localhost:8080/api/',
@@ -27,20 +34,53 @@ foreach ($data['menu'] as $row) {
 function cmp($a, $b) {
 	return $a['ordem'] > $b['ordem'];
 }
-?>
 
+$primeira = true;
+$primeiraEscola = "";
+foreach ($data['escola'] as $rowEscola) 
+{
+	if ($primeira) {
+		$primeiraEscola = $rowEscola['nome_fantasia'];
+		$primeira = false;
+	}
+}
+
+$login = false;
+foreach ($data['pessoa'] as $rowPessoa) 
+{
+	if($email == $rowPessoa['email'] && $senha == $rowPessoa['senha']) {
+		$login = true;
+	}
+}
+?>
+@if (!$login)
+	redirect()->route('logout');
+@endif
 <nav class="navbar navbar-expand-sm bg-light">
 
 <div class="navbar navbar-custom navbar-fixed-top" role="navigation">
     <div class="container-fluid">
-        <div class="navbar-header">
+        <!--<div class="navbar-header">
 			<div class="container-fluid">
 				<a class="navbar-brand" href="#"><img style="margin-top: 0px;" src="images/logo.png"></a>
 			</div>
-		</div>
+		</div>-->
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
-			   <li><a data-toggle="modal" data-target="#loginModal"><span class="glyphicon glyphicon-log-in"></span> login</a></li>
+				<li class="nav-item dropdown ml-auto">
+					<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">{{ $primeiraEscola }}</a>
+					<div class="dropdown-menu dropdown-menu-right">
+						@foreach ($data['escola'] as $rowEscola)
+							@if ($primeiraEscola != $rowEscola["nome_fantasia"])
+								<a href="#" class="dropdown-item">{{ $rowEscola["nome_fantasia"] }}</a>
+							@endif
+						@endforeach	
+						<div class="dropdown-divider"></div>
+						<a href="#"class="dropdown-item">Logout</a>
+					</div>
+				
+				</li>
+			
 			</ul>
             <ul class="nav navbar-nav">
 				@foreach ($data['menu'] as $row)

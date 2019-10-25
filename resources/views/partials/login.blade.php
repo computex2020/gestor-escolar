@@ -14,9 +14,15 @@
 					</div>
 					<div class="form-group">
 						<div class="clearfix">
+							<label>E-mail</label>
+						</div>
+						<input type="text" class="form-control" required="required" name="email">
+					</div>
+					<div class="form-group">
+						<div class="clearfix">
 							<label>Senha</label>
 						</div>
-						<input type="password" class="form-control" required="required">
+						<input type="password" class="form-control" required="required" name="senha">
 					</div>
 				</div>
 				<div class="modal-footer">
