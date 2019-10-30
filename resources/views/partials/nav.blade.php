@@ -1,14 +1,17 @@
 <?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
 use GuzzleHttp\Client;
 
-$email = "";
-$senha = "";
-if(isset($_POST["email"])) {
+$email = $_SESSION["email"];
+$senha = $_SESSION["senha"];
+$escola = $_SESSION["escola"];
+/*if(isset($_POST["email"])) {
 	$email = $_POST["email"];
 	$senha = $_POST["senha"];
-}
-echo $email;
+}*/
 $client = new Client([
     // Base URI is used with relative requests
     'base_uri' => 'http://localhost:8080/api/',
@@ -16,8 +19,7 @@ $client = new Client([
     'timeout'  => 2.0,
 ]);
 
-$id = $escola;
-$response = $client->request('GET', 'clientecod/'.$id);
+$response = $client->request('GET', 'clientecod/'.$escola);
 
 $data = json_decode($response->getBody()->getContents(), true);
 
@@ -52,10 +54,10 @@ foreach ($data['pessoa'] as $rowPessoa)
 		$login = true;
 	}
 }
+if (!$login)
+	return redirect()->route('logout');
 ?>
-@if (!$login)
-	redirect()->route('logout');
-@endif
+
 <nav class="navbar navbar-expand-sm bg-light">
 
 <div class="navbar navbar-custom navbar-fixed-top" role="navigation">
@@ -98,7 +100,8 @@ foreach ($data['pessoa'] as $rowPessoa)
 							    $father = "pai".$row2['id']
 							@endphp
 							@if (!isset($$father)) 
-								<li><a href="#">{{ $row2['text'] }}</a></li>
+							
+								<li><a href="{{ $row2['link'] }}">{{ $row2['text'] }}</a></li>
 							@else
 								<li class="dropdown-submenu">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ $row2['text'] }}</a>

@@ -1,11 +1,11 @@
 <?php
-
-//Route::get('/', 'ClientesController@index');
-//Route::get('cliente/{id}', 'ClientesController@show');
 Route::get('/', function () {
     return view('index');
 });
 
+Route::get('usuarios', 'UsuariosController@index');
+Route::get('usuario/edit/{id}', 'UsuariosController@show');
+
 Route::post('home','LoginController@index')->name('home');
 
-Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
+Route::get('logout', 'LoginController@logout')->name('logout');
