@@ -63,9 +63,9 @@ $menu = $data['menu'];
             <span class="text-muted">Menu</span>
             <!--<span class="badge badge-secondary badge-pill">3</span>-->
           </h4>
-		  <a href="menu.php?acao=new" class="btn btn-success"><i class="material-icons">&#xE147;</i> <span>Nova Opção</span></a>
+		  
 		  <div class="container-fluid">
-			<div class="row">ok
+			<div class="row">
 				<div id="tree-data-container"></div>
 			</div>
 		  </div>
@@ -75,13 +75,12 @@ $menu = $data['menu'];
 @stop
 
 @section('page-js-files')
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="{!!url('/js/jstree.min.js')!!}"></script>
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 @stop
 
 @section('page-js-script')
+    
     <script type="text/javascript">
         var checadas = $("#marcadas").val();
         var ids = checadas.split(",");
@@ -91,11 +90,7 @@ $menu = $data['menu'];
                 'plugins': ["checkbox"],
                 'checkbox': { cascade: "down", three_state: false },
                 'core' : {
-                    'data' : {
-                        'multiple' : false,
-                        "url" : "menu_get.php",
-                        "dataType" : "json"
-                    }
+                    'data' : {!! app(App\Http\Controllers\UsuariosController::class)->getree() !!}
                 }
             })
             $(".jstree").on("loaded.jstree", function(){
@@ -128,4 +123,5 @@ $menu = $data['menu'];
             });
             });
     </script>
+    <script src="{!!url('js/jstree.min.js')!!}"></script>
 @stop
