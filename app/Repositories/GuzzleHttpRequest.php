@@ -19,4 +19,6 @@ class GuzzleHttpRequest
     
         return json_decode($response->getBody()->getContents());
     }
+
+    
 }

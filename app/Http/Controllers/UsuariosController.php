@@ -90,5 +90,35 @@ class UsuariosController extends Controller
 		}
 
     }
+
+    public function save(Request $request)
+    {
+        $nome = $request->input('nome');
+        $email = $request->input('email');
+        $senha = $request->input('senha');
+
+        $body = array(
+            'nome' => $nome,
+            'email' => $email,
+            'senha' => $senha
+        );
+
+        json_encode($body);
+
+        $client = new \GuzzleHttp\Client([
+            'headers' => [ 
+                'Accept' => 'application/json',
+                'Content-type' => 'application/json']
+        ]);
+
+        $response = $client->post('http://localhost:8080/api/usuario',
+            ['json' => $body]
+        );
+
+        //echo '<pre>' . var_export($response->getStatusCode(), true) . '</pre>';
+        //echo '<pre>' . var_export($response->getBody()->getContents(), true) . '</pre>';
+
+        return response()->json(['success'=>'Operação realizada com sucesso.']);
+    }
     
 }

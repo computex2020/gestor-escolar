@@ -24,7 +24,7 @@
                 <h2>Cadastro de <b>Usuários</b></h2>
             </div>
             <div class="col-sm-6">
-                <a href="cliente.php?acao=new" class="btn btn-success"><i class="material-icons">&#xE147;</i> <span>Adicionar novo Usuário</span></a>
+                <a href="/usuario/new" class="btn btn-success"><i class="material-icons">&#xE147;</i> <span>Adicionar novo Usuário</span></a>
                 <!--<a href="#deleteClienteModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Excluir</span></a>	-->					
             </div>
         </div>
