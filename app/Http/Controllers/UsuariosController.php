@@ -115,10 +115,44 @@ class UsuariosController extends Controller
             ['json' => $body]
         );
 
+        
         //echo '<pre>' . var_export($response->getStatusCode(), true) . '</pre>';
-        //echo '<pre>' . var_export($response->getBody()->getContents(), true) . '</pre>';
-
-        return response()->json(['success'=>'Operação realizada com sucesso.']);
+        
+        //return response()->json(['url'=>url('/usuarios')]);
+        //return response()->json(['success' => 'Operação realizada com sucesso.','url' => url('/usuarios')]);
+        return $response->getBody(true)->getContents();
+        
     }
     
+    public function saveusuariomenu(Request $request)
+    {
+        $idusuario = $request->input('idusuario');
+        $marcadas = $request->input('marcadas');
+
+        $opcao = explode(",", $marcadas);
+        for($i=0; $i<count($opcao); $i++) {
+            $body = array(
+                'usuario_id' => $idusuario,
+                'menu_id' => $opcao[$i]
+            );
+
+            json_encode($body);
+
+            $client = new \GuzzleHttp\Client([
+                'headers' => [ 
+                    'Accept' => 'application/json',
+                    'Content-type' => 'application/json']
+            ]);
+
+            $response = $client->post('http://localhost:8080/api/usuariomenu',
+                ['json' => $body]
+            );
+        }
+/*
+        
+*/
+        return response()->json(['success' => 'Operação realizada com sucesso.']);
+        
+        
+    }
 }

@@ -30,7 +30,7 @@ $menu = $data['menu'];
         
 @section('content')
     <div class="py-1 text-left">
-    <h3>Cadastro de Usuários</h3>
+    <h2>Novo <b>Usuário</b></h2>
     </div>
 
     <div class="row">
@@ -115,25 +115,38 @@ $menu = $data['menu'];
 
         $(".btn-submit").click(function(e){
             e.preventDefault(); // stop the normal submission
-            var nome       = $("#nome").val();
-            var email     = $("#email").val();
-            var id         = $("#id").val();
-            console.log(nome);
+            var nome  = $("#nome").val();
+            var email = $("#email").val();
+            var senha = $("#senha").val();
             var selectedPermissions = [];
             var selectedElms = $('#tree-data-container').jstree("get_selected", true);
-                $.each(selectedElms, function() {
-                    selectedPermissions.push(this.id);
+            $.each(selectedElms, function() {
+                selectedPermissions.push(this.id);
             });
         
             var opcoes = selectedPermissions.join(",");
             
-            
             $.ajax({
                 type:'POST',
                 url:'/usuario/save',
-                data:{nome:nome, email:email, marcadas:opcoes, _token: '{{csrf_token()}}'},
+                dataType: "json",
+                data:{nome:nome, email:email, senha:senha, marcadas:opcoes, _token: '{{csrf_token()}}'},
                 success:function(data){
-                    alert(data.success);
+                    console.log(data.id);
+                    $.ajax({
+                        type:'POST',
+                        url:'/usuario/saveusuariomenu',
+                        dataType: "json",
+                        data:{idusuario:data.id, marcadas:opcoes, _token: '{{csrf_token()}}'},
+                        success:function(data){
+                            alert(data.success);
+                        },
+                        error: function (data, textStatus, errorThrown) {
+                            console.log(data);
+
+                        },
+
+                    });
                 },
                 error: function (data, textStatus, errorThrown) {
                     console.log(data);
