@@ -87,7 +87,7 @@ function cmp($a, $b) {
 		</div>-->
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
-				<!--<li class="nav-item dropdown ml-auto">
+				{{--<li class="nav-item dropdown ml-auto">
 					<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">{{ $primeiraEscola }}</a>
 					<div class="dropdown-menu dropdown-menu-right">
 						@foreach ($data['escola'] as $rowEscola)
@@ -99,7 +99,7 @@ function cmp($a, $b) {
 						<a href="#"class="dropdown-item">Logout</a>
 					</div>
 				
-				</li>-->
+				</li>--}}
 				<div class="dropdown">
 					<button class="btn btn-secondary btn-lg" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					{{ $primeiraEscola }}
