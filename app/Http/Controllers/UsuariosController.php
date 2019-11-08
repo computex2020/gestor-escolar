@@ -55,6 +55,7 @@ class UsuariosController extends Controller
         $response = $client->request('GET', 'clientecod/'.$escola);
         
         $data = json_decode($response->getBody()->getContents(), true);
+        
 		//usort($data['menu'], 'cmp');
         $data2 = $data['menu'];
         $item = array();
@@ -130,29 +131,43 @@ class UsuariosController extends Controller
         $marcadas = $request->input('marcadas');
 
         $opcao = explode(",", $marcadas);
+
+        $client = new \GuzzleHttp\Client([
+            'headers' => [ 
+                'Accept' => 'application/json',
+                'Content-type' => 'application/json']
+        ]);
+
         for($i=0; $i<count($opcao); $i++) {
             $body = array(
                 'usuario_id' => $idusuario,
+                'usuario_pessoa_id' => $idusuario,
                 'menu_id' => $opcao[$i]
             );
 
             json_encode($body);
 
-            $client = new \GuzzleHttp\Client([
-                'headers' => [ 
-                    'Accept' => 'application/json',
-                    'Content-type' => 'application/json']
-            ]);
-
             $response = $client->post('http://localhost:8080/api/usuariomenu',
                 ['json' => $body]
             );
         }
-/*
-        
-*/
+
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+        $idCliente = $_SESSION["idcliente"];
+        $body2 = array(
+            'cliente_id' => $idCliente,
+            'pessoa_id' => $idusuario
+        );
+
+        json_encode($body2);
+
+        $response2 = $client->post('http://localhost:8080/api/clientepessoa',
+            ['json' => $body2]
+        );
+
         return response()->json(['success' => 'Operação realizada com sucesso.']);
-        
         
     }
 }
