@@ -25,7 +25,7 @@
                 height: 100%;
                 position: relative;
                 width: 100% !important;
-                /*background-image: url("images/class_room_menor.png") !important; */
+                background-image: url("images/class_room_menor.png") !important;
                 background-size: auto;
                 background-repeat: no-repeat;
                 }

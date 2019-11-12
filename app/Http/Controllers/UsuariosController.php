@@ -18,7 +18,7 @@ class UsuariosController extends Controller
 
     public function index()
     {
-        $usuarios = $this->usuarios->all();
+        $usuarios = $this->usuarios->usuariosCliente();
     
         return view('usuarios.index', compact('usuarios'));
     }

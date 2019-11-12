@@ -1,22 +1,9 @@
 @extends('layouts.app')
         
 @section('content')        
-<!--<div class="card">
-  <h5 class="card-header h5">Usuários</h5>
-  <div class="card-body">
-    <p class="card-text">
-        @foreach ($usuarios as $usuario)
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <a href="/usuario/{{ $usuario->id}}">
-                        {{ $usuario->nome}}
-                    </a>
-                </div>
-            </div>
-        @endforeach
-    </p>
-  </div>
-</div>-->
+@php
+    $obj = $usuarios;
+@endphp
 <div class="table-wrapper">
     <div class="table-title">
         <div class="row">
@@ -40,10 +27,10 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($usuarios as $usuario)
+            @foreach ($obj as $usuario)
                     <tr>
-	                    <td>{{ $usuario->nome}}</td>
-	                    <td>{{ $usuario->email}}</td>
+	                    <td>{{ $usuario->codigo}}</td>
+	                    <td>{{ $usuario->bairro}}</td>
 	                    <td></td>
 	                    <td></td>
 	                    <td>
