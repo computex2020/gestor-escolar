@@ -111,7 +111,7 @@ function cmp($a, $b) {
 							@endif
 						@endforeach	
 						<div class="dropdown-divider"><hr/></div>
-						<a href="#" class="dropdown-item">&nbsp;&nbsp;{{$email}} - Logout&nbsp;&nbsp;</a>
+						<a href="{{ url('/logout') }}" class="dropdown-item">&nbsp;&nbsp;{{$email}} - Logout&nbsp;&nbsp;{{session_status()}}</a>
 					</div>
 				</div>
 			</ul>

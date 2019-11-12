@@ -1,10 +1,7 @@
 @extends('layouts.app')
         
 @section('content')        
-@php
-    $obj = get_object_vars($usuarios)
-    var_dump($obj);
-@endphp
+
 
 <div class="table-wrapper">
     <div class="table-title">
@@ -29,15 +26,15 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($obj as $usuario)
+            @foreach ($usuarios as $usuario)
                     <tr>
-	                    <td>{{-- $usuario->codigo--}}</td>
-	                    <td>{{-- $usuario->bairro--}}</td>
+	                    <td>{{ $usuario->nome }}</td>
+	                    <td>{{ $usuario->email }}</td>
 	                    <td></td>
 	                    <td></td>
 	                    <td>
-                            {{--<a href="/usuario/edit/{{ $usuario->id}}" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Editar">&#xE254;</i></a>
-                            <a href="/usuario/delete/{{ $usuario->id}}" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Excluir">&#xE872;</i></a>--}}
+                            <a href="/usuario/edit/{{ $usuario->id}}" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Editar">&#xE254;</i></a>
+                            <a href="/usuario/delete/{{ $usuario->id}}" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Excluir">&#xE872;</i></a>
 	                    </td>
 	                </tr>
             @endforeach

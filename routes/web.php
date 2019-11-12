@@ -1,11 +1,11 @@
 <?php
 Route::get('/', function () {
-    return view('index');
+    return view('index', ['body_class' => 'bg-image']);
 });
 
 Route::post('home','LoginController@index')->name('home');
 
-Route::get('logout', 'LoginController@logout')->name('logout');
+Route::get('/logout', 'LogoutController@logout');
 
 Route::get('usuarios', 'UsuariosController@index');
 Route::get('usuario/edit/{id}', 'UsuariosController@show');

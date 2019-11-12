@@ -9,7 +9,7 @@
 		</div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
-			   <li><a data-toggle="modal" data-target="#loginModal"><span class="glyphicon glyphicon-log-in"></span> login</a></li>
+			   <li><a data-toggle="modal" data-target="#loginModal"><span class="glyphicon glyphicon-log-in"></span> login {{session_status()}}</a></li>
 			</ul>
             <ul class="nav navbar-nav">
                <li></li>

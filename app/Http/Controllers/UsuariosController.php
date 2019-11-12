@@ -18,14 +18,14 @@ class UsuariosController extends Controller
 
     public function index()
     {
-        $usuarios = $this->usuarios->usuariosCliente();
+        $usuarios = $this->usuarios->all();
     
-        return view('usuarios.index', compact('usuarios'));
+        return view('usuarios.index', compact('usuarios'), ['body_class' => 'bg-noimage']);
     }
 
     public function new()
     {
-        return view('usuarios.new');
+        return view('usuarios.new', ['body_class' => 'bg-noimage']);
     }
 
     public function show($id)
