@@ -26,8 +26,8 @@ class Usuarios extends GuzzleHttpRequest
         $escola = $_SESSION["escola"];
         
         //echo $this->get('clientecod/'.$escola);
-        return  response()->json(['codigo' => $escola]);
-        //return $this->get('clientecod/'.$escola);
+        //return  response()->json(['codigo' => $escola]);
+        return $this->get('clientecod/34');
     }
 
 }
