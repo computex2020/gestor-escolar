@@ -15,7 +15,7 @@
         
     </head>
     <body class="{{ $body_class }}">
-        @if(Request::segment(1) != '' && Request::segment(1) != 'home')
+        @if(Request::segment(1) != '' && Request::segment(1) != 'home' && session_status() != 1)
             @include('partials.nav');
         @else
             @if(Request::segment(1) == 'home')

@@ -1,3 +1,10 @@
+@if(session_status() == 1)
+    @php
+        header("Location: " . URL::to('/'), true, 302);
+        exit();
+    @endphp
+@endif
+
 @extends('layouts.app')
         
 @section('content')        
